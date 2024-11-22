@@ -6,6 +6,7 @@ describe('ProgressBar.vue', () => {
   beforeEach(() => {
     vi.useFakeTimers()
   })
+
   it('is hidden on initial render', () => {
     const wrapper = shallowMount(ProgressBar)
     expect(wrapper.classes()).toContain('hidden')
@@ -47,11 +48,18 @@ describe('ProgressBar.vue', () => {
   it('increases width by 1% every 100ms after start call', async () => {
     const wrapper = shallowMount(ProgressBar)
     await wrapper.vm.start()
+    await wrapper.vm.$nextTick()
+
     vi.advanceTimersByTime(100)
+    await wrapper.vm.$nextTick()
     expect(wrapper.element.style.width).toBe('1%')
+
     vi.advanceTimersByTime(900)
+    await wrapper.vm.$nextTick()
     expect(wrapper.element.style.width).toBe('10%')
+
     vi.advanceTimersByTime(4000)
+    await wrapper.vm.$nextTick()
     expect(wrapper.element.style.width).toBe('50%')
   })
 })
