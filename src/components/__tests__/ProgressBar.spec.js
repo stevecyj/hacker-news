@@ -1,8 +1,11 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
 import ProgressBar from '@/components/ProgressBar.vue'
 
 describe('ProgressBar.vue', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
   it('is hidden on initial render', () => {
     const wrapper = shallowMount(ProgressBar)
     expect(wrapper.classes()).toContain('hidden')
@@ -39,5 +42,16 @@ describe('ProgressBar.vue', () => {
     await wrapper.vm.finish()
     await wrapper.vm.start()
     expect(wrapper.element.style.width).toBe('0%')
+  })
+
+  it('increases width by 1% every 100ms after start call', async () => {
+    const wrapper = shallowMount(ProgressBar)
+    await wrapper.vm.start()
+    vi.advanceTimersByTime(100)
+    expect(wrapper.element.style.width).toBe('1%')
+    vi.advanceTimersByTime(900)
+    expect(wrapper.element.style.width).toBe('10%')
+    vi.advanceTimersByTime(4000)
+    expect(wrapper.element.style.width).toBe('50%')
   })
 })

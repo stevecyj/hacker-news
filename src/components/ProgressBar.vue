@@ -3,10 +3,18 @@ import { ref } from 'vue'
 
 const hidden = ref(true)
 const percent = ref(0)
+const timer = ref(null)
 
 const start = () => {
   hidden.value = false
   percent.value = 0
+  timer.value = setInterval(() => {
+    percent.value++
+    if (percent.value >= 100) {
+      clearInterval(timer.value)
+      finish()
+    }
+  }, 100)
 }
 const finish = () => {
   console.log('finish')
