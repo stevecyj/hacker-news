@@ -6,7 +6,11 @@ const displayItems = window.items
 </script>
 <template>
   <div class="item-list">
-    <NewsItem v-for="item in displayItems" :key="item.id"></NewsItem>
+    <NewsItem
+      v-for="item in displayItems"
+      :key="item.id"
+      :item="item"
+    ></NewsItem>
   </div>
 </template>
 <style scoped></style>

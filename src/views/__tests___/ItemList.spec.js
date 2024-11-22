@@ -9,6 +9,11 @@ describe('ItemList', () => {
     const items = [{}, {}, {}]
     window.items = items
     const wrapper = shallowMount(ItemList)
-    expect(wrapper.findAllComponents(NewsItem).length).toBe(items.length)
+    const newsItems = wrapper.findAllComponents(NewsItem)
+    expect(newsItems).toHaveLength(items.length)
+
+    newsItems.forEach((newsItem, index) => {
+      expect(newsItem.props('item')).toBe(items[index])
+    })
   })
 })
