@@ -6,6 +6,7 @@ const percent = ref(0)
 
 const start = () => {
   hidden.value = false
+  percent.value = 0
 }
 const finish = () => {
   console.log('finish')
