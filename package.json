@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest --inspect-brk --no-file-parallelism",
+    "test:unit": "vitest",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "playwright test",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
