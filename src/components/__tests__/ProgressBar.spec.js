@@ -62,4 +62,13 @@ describe('ProgressBar.vue', () => {
     await wrapper.vm.$nextTick()
     expect(wrapper.element.style.width).toBe('50%')
   })
+
+  it('clears timer when finish is called', async () => {
+    vi.spyOn(window, 'clearInterval')
+    vi.spyOn(window, 'setInterval').mockReturnValue(123)
+    const wrapper = shallowMount(ProgressBar)
+    await wrapper.vm.start()
+    await wrapper.vm.finish()
+    expect(clearInterval).toHaveBeenCalledWith(123)
+  })
 })

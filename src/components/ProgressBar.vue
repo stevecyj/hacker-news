@@ -10,15 +10,12 @@ const start = () => {
   percent.value = 0
   timer.value = setInterval(() => {
     percent.value++
-    // if (percent.value >= 100) {
-    //   clearInterval(timer.value)
-    //   finish()
-    // }
   }, 100)
 }
 const finish = () => {
   hidden.value = true
   percent.value = 100
+  clearInterval(timer.value)
 }
 </script>
 <template>
