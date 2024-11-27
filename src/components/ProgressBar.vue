@@ -17,6 +17,11 @@ const finish = () => {
   percent.value = 100
   clearInterval(timer.value)
 }
+
+defineExpose({
+  start,
+  finish,
+})
 </script>
 <template>
   <div
