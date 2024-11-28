@@ -1,9 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
-import { shallowMount, mount } from '@vue/test-utils'
-
+import { shallowMount, mount, flushPromises } from '@vue/test-utils'
 import ItemList from '@/views/ItemList.vue'
 import NewsItem from '@/components/NewsItem.vue'
-import ProgressBar from '@/components/ProgressBar.vue'
 import { fetchListData } from '@/api/__mocks__/api'
 
 describe('ItemList', () => {
@@ -41,5 +39,15 @@ describe('ItemList', () => {
     expect.assertions(1)
     const data = await fetchListData()
     expect(data).toEqual([])
+  })
+
+  it('awaits promise', async () => {
+    expect.assertions(1)
+    let hasResolved = false
+    Promise.resolve().then(() => {
+      hasResolved = true
+    })
+    await flushPromises()
+    expect(hasResolved).toBe(true)
   })
 })
