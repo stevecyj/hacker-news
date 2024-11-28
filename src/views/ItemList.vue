@@ -2,14 +2,30 @@
 import { ref, onBeforeMount, onMounted } from 'vue'
 import NewsItem from '@/components/NewsItem.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
+import { fetchListData } from '@/api/api'
 
 const displayItems = window.items
+// const displayItems = ref([])
 const progressBar = ref(null)
 
-onMounted(() => {
+const loadItems = async () => {
   if (progressBar.value && typeof progressBar.value.start === 'function') {
     progressBar.value.start()
   }
+
+  const items = await fetchListData()
+  displayItems.value = items
+
+  if (progressBar.value && typeof progressBar.value.finish === 'function') {
+    progressBar.value.finish()
+  }
+}
+
+onMounted(() => {
+  // if (progressBar.value && typeof progressBar.value.start === 'function') {
+  //   progressBar.value.start()
+  // }
+  loadItems()
 })
 </script>
 <template>
