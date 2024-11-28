@@ -4,6 +4,7 @@ import { shallowMount, mount } from '@vue/test-utils'
 import ItemList from '@/views/ItemList.vue'
 import NewsItem from '@/components/NewsItem.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
+import { fetchListData } from '@/api/__mocks__/api'
 
 describe('ItemList', () => {
   it('renders an Item for each item in window.items', () => {
@@ -34,5 +35,11 @@ describe('ItemList', () => {
     })
     await wrapper.vm.$nextTick()
     expect(startSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('fetches data from api', async () => {
+    expect.assertions(1)
+    const data = await fetchListData()
+    expect(data).toEqual([])
   })
 })
