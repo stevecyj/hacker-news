@@ -17,10 +17,14 @@ const finish = () => {
   percent.value = 100
   clearInterval(timer.value)
 }
+const fail = () => {
+  hidden.value = true
+}
 
 defineExpose({
   start,
   finish,
+  fail,
 })
 </script>
 <template>

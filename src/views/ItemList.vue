@@ -13,12 +13,20 @@ const loadItems = async () => {
     progressBar.value.start()
   }
 
-  const items = await fetchListData()
-  displayItems.value = items
-
-  if (progressBar.value && typeof progressBar.value.finish === 'function') {
-    progressBar.value.finish()
-  }
+  // const items = await fetchListData()
+  // displayItems.value = items
+  fetchListData()
+    .then((items) => {
+      displayItems.value = items
+      if (progressBar.value && typeof progressBar.value.finish === 'function') {
+        progressBar.value.finish()
+      }
+    })
+    .catch(() => {
+      if (progressBar.value && typeof progressBar.value.fail === 'function') {
+        progressBar.value.fail()
+      }
+    })
 }
 
 onMounted(() => {

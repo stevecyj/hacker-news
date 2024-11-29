@@ -74,4 +74,17 @@ describe('ItemList', () => {
 
     expect(finishSpy).toHaveBeenCalledTimes(1)
   })
+
+  it('calls progressBar fail when load unsuccessful', async () => {
+    expect.assertions(1)
+    const failSpy = vi.fn()
+    fetchListData.mockRejectedValueOnce()
+    const wrapper = shallowMount(ItemList, {
+      global: {
+        stubs: { ProgressBar: { methods: { fail: failSpy } } },
+      },
+    })
+    await flushPromises()
+    expect(failSpy).toHaveBeenCalledTimes(1)
+  })
 })
