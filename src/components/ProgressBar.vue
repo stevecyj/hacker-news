@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const hidden = ref(true)
 const percent = ref(0)

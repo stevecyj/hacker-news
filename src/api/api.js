@@ -1,3 +1,1 @@
-import { vi } from 'vitest'
-
-export const fetchListData = vi.fn(() => Promise.resolve([]))
+export const fetchListData = () => Promise.resolve([])

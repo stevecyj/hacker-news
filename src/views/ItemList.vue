@@ -4,8 +4,8 @@ import NewsItem from '@/components/NewsItem.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { fetchListData } from '@/api/api'
 
-const displayItems = window.items
-// const displayItems = ref([])
+// const displayItems = window.items
+const displayItems = ref([])
 const progressBar = ref(null)
 
 const loadItems = async () => {
