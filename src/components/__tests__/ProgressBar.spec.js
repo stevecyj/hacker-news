@@ -19,6 +19,7 @@ describe('ProgressBar.vue', () => {
 
   it('shows the bar when start is called', async () => {
     const wrapper = shallowMount(ProgressBar)
+    expect(wrapper.classes()).toContain('hidden')
     await wrapper.vm.start()
     expect(wrapper.classes()).not.toContain('hidden')
   })
