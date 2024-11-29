@@ -8,6 +8,7 @@ vi.mock('@/api/api')
 
 describe('ItemList', () => {
   it('renders an Item for each item (in window.items)', async () => {
+    expect.assertions(4)
     // const items = [{}, {}, {}]
     const items = [{ id: 1 }, { id: 2 }, { id: 3 }]
     // window.items = items

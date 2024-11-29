@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import NewsItem from '@/components/NewsItem.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { fetchListData } from '@/api/api'
@@ -22,9 +22,6 @@ const loadItems = async () => {
 }
 
 onMounted(() => {
-  // if (progressBar.value && typeof progressBar.value.start === 'function') {
-  //   progressBar.value.start()
-  // }
   loadItems()
 })
 </script>
